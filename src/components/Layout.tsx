@@ -20,10 +20,19 @@ const Layout = () => {
     setMobileMenuOpen(false);
   }, [location]);
 
-  const handleLogout = () => {
+  const handleLogout = (e: React.MouseEvent) => {
+    // Prevent event from propagating to parent elements
+    e.stopPropagation();
+    e.preventDefault();
+    
     localStorage.removeItem('currentUser');
     setUser(null);
     navigate('/');
+  };
+
+  const toggleMobileMenu = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setMobileMenuOpen(!mobileMenuOpen);
   };
 
   return (
@@ -34,8 +43,8 @@ const Layout = () => {
             <Link to="/" className="flex items-center space-x-2 text-xl font-bold">
               <School size={30} className="text-white" />
               <div>
-                <div className="leading-tight">SPP HUB</div>
-                <div className="text-xs font-normal opacity-80">Misabahul Ulum</div>
+                <div className="leading-tight">SPP MISBAHUL ULUM</div>
+                <div className="text-xs font-normal opacity-80">Sistem Pembayaran Pendidikan</div>
               </div>
             </Link>
             
@@ -73,7 +82,7 @@ const Layout = () => {
             {/* Mobile menu button */}
             <button 
               className="md:hidden text-white"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={toggleMobileMenu}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -81,7 +90,7 @@ const Layout = () => {
           
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="md:hidden pt-4 pb-2 border-t border-emerald-600/50 mt-4">
+            <div className="md:hidden pt-4 pb-2 border-t border-emerald-600/50 mt-4" onClick={(e) => e.stopPropagation()}>
               {user ? (
                 <div className="space-y-3">
                   <div className="flex items-center bg-emerald-700/40 p-3 rounded-lg">
@@ -105,6 +114,7 @@ const Layout = () => {
                 <Link 
                   to="/login" 
                   className="block w-full bg-white text-emerald-700 hover:bg-emerald-50 transition-colors p-3 rounded-md font-medium text-center"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   Login
                 </Link>
@@ -123,15 +133,15 @@ const Layout = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-4 md:mb-0">
               <School size={24} className="mr-2" />
-              <span className="font-bold text-lg">Yayasan Misabahul Ulum</span>
+              <span className="font-bold text-lg">Yayasan Misbahul Ulum</span>
             </div>
             <div className="text-gray-400 text-sm">
-              &copy; {new Date().getFullYear()} Yayasan Misabahul Ulum. All rights reserved.
+              &copy; {new Date().getFullYear()} Yayasan Misbahul Ulum. All rights reserved.
             </div>
           </div>
           <div className="mt-4 pt-4 border-t border-gray-700 text-sm text-gray-400 flex flex-col md:flex-row justify-between">
-            <div className="mb-2 md:mb-0">Jl. Pendidikan No. 123, Kota Bandung</div>
-            <div>Email: info@misabahululum.sch.id | Telp: (022) 123-4567</div>
+            <div className="mb-2 md:mb-0">Kp.Cibolang, Banjarwangi, Ciawi, Bogor, Jawabarat 16720</div>
+            <div>Email: info@misbahululum.sch.id | Telp: (022) 123-4567</div>
           </div>
         </div>
       </footer>

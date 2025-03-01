@@ -60,7 +60,7 @@ const PrintablePaymentReport = forwardRef<HTMLDivElement, PrintablePaymentReport
                 <School size={40} className="text-emerald-600 mr-3" />
                 <div>
                   <h1 className="text-xl font-bold text-gray-800">Yayasan Misabahul Ulum</h1>
-                  <p className="text-sm text-gray-600">Jl. Pendidikan No. 123, Kota Bandung</p>
+                  <p className="text-sm text-gray-600">Kp.Cibolang, Banjarwangi, Ciawi, Bogor, Jawabarat 16720</p>
                 </div>
               </div>
               <div className="text-right">
